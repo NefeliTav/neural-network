@@ -172,11 +172,11 @@ void train(matrix training_input, matrix training_output, matrix synaptic_weight
         tr = transpose(training_input);
         update_synaptic_weights(synaptic_weights, tr, adjustments);
         if ((i % 1000) == 0) {
-            printf("%lf%%\r", (double)((double)i/(double)iterations * 100.0));
+            printf("%lf%% Done\r", (double)((double)i/(double)iterations * 100.0));
             fflush(stdout);
         }
     }
-    printf("100%% Done\n");
+    printf("100.0%% Done\n");
     free(output);
     free(error);
     free(adjustments);

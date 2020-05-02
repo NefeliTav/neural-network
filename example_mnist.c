@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     int i;
     const int size_of_input = 784;
     const int size_of_output = 10;
-    const int train_number = 100;
+    const int train_number = 1000;
     int number_of_iteration = 100000;
     if (argc == 2) {
         number_of_iteration = atoi(argv[1]);
