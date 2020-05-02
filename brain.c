@@ -54,8 +54,9 @@ matrix mat_mul(matrix a, matrix b) {
 	matrix r;
 	double *p, *pa;
 	int i, j;
-	if (a->w != b->h) return 0;
- 
+	if (a->w != b->h) {
+        return 0;
+    }
 	r = mat_new(a->h, b->w);
 	p = r->x;
 	for (pa = a->x, i = 0; i < a->h; i++, pa += a->w)
