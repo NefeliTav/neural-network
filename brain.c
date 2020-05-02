@@ -31,7 +31,10 @@ void apply_sigmoid(matrix a) {
 }
 
 double get_random(double min, double max) {
-    return (double)rand()/RAND_MAX*max+min;
+    if ((rand() % 2) == 0) {
+        return ((min + 1) + (((double) rand()) / (double) RAND_MAX) * (max - (min + 1)));
+    }
+    return -1.0 * ((min + 1) + (((double) rand()) / (double) RAND_MAX) * (max - (min + 1)));
 }
  
 double dot(double *a, double *b, int len, int step) {
@@ -137,7 +140,7 @@ void validate_matrix(matrix a) {
 void train(matrix training_input, matrix training_output, matrix synaptic_weights, int iterations) {
     int i;
     matrix output = NULL, error = NULL, adjustments = NULL, tr = NULL;
-    srand(time(0));
+    srand(time(NULL));
     validate_matrix(training_input);
     validate_matrix(training_output);
     if (training_input->h != training_output->h) {
@@ -168,7 +171,12 @@ void train(matrix training_input, matrix training_output, matrix synaptic_weight
         }
         tr = transpose(training_input);
         update_synaptic_weights(synaptic_weights, tr, adjustments);
+        if ((i % 1000) == 0) {
+            printf("%lf%%\r", (double)((double)i/(double)iterations * 100.0));
+            fflush(stdout);
+        }
     }
+    printf("100%% Done\n");
     free(output);
     free(error);
     free(adjustments);

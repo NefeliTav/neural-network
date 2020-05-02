@@ -35,8 +35,9 @@ int main(int argc, char **argv) {
         dsynaptic_weights[i] = get_random(-1.0, 1.0);
     }
     matrix_t synaptic_weights = { training_input.w, 1, dsynaptic_weights};
-
+    mat_show(&synaptic_weights);
     train(&training_input, &training_output, &synaptic_weights, number_of_iteration);
+    mat_show(&synaptic_weights);
     matrix output = run(&synaptic_weights, &test_input);
     mat_show(output);
     free(output);

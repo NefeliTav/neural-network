@@ -77,23 +77,7 @@ int main(int argc, char **argv) {
     }
     matrix_t synaptic_weights = { training_input.w, training_output.w, dsynaptic_weights};
     
-    /*int j;
-    for (j = 0; j < train_number; j++) {
-        for (i=0; i<size_of_input; i++) {
-            printf("%1.1f ", dtraining_input[i + j*size_of_input]);
-            if ((i+1) % 28 == 0) {
-                putchar('\n');
-            }
-        }
-        putchar('\n');
-        for (i=0; i<size_of_output; i++) {
-            printf("%1.1f ", dtraining_output[i + j*size_of_output]);
-        }
-        putchar('\n');
-    }*/
-    
     train(&training_input, &training_output, &synaptic_weights, number_of_iteration);
-
     double *dtest_input = malloc(sizeof(double) * size_of_input);
     memcpy(dtest_input, &test_image[0][0], sizeof(double) * size_of_input);
     matrix_t test_input = { 1, size_of_input, dtest_input};
